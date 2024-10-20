@@ -37,10 +37,10 @@ Then, on your Shaarli instance, go to *Plugin administration* page and activate 
 ### 3. Configure the plugin
 Your parameters from step 1 will be used here. After plugin activation, you'll see 5 parameters.
 
-- **MASTODON_INSTANCE**: Your Mastodon instance, example: *mastodon.xyz*
-- **MASTODON_APPTOKEN**: Mastodon application token, example: *rODeyYKXVXDq91ecGwTG6BI0yU5mLTSiPjFMv6uJ50I*
-- **MASTODON_TOOT_MAX_LENGTH**: Defines the toots max length. By default it is 500 since it's the max length on most Mastodon instances.
-- **MASTODON_TOOT_FORMAT**: The format of your toots. Available placeholders:
+- **QOTOORG_INSTANCE**: Your Mastodon instance, example: *mastodon.xyz*
+- **QOTOORG_APPTOKEN**: Mastodon application token, example: *rODeyYKXVXDq91ecGwTG6BI0yU5mLTSiPjFMv6uJ50I*
+- **QOTOORG_TOOT_MAX_LENGTH**: Defines the toots max length. By default it is 500 since it's the max length on most Mastodon instances.
+- **QOTOORG_TOOT_FORMAT**: The format of your toots. Available placeholders:
     + *${url}*: URL of link shared
     + *${permalink}*: permalink of the share
     + *${title}*: title of the share

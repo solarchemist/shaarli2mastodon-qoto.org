@@ -10,8 +10,8 @@ class Utils_qotoorg {
    */
   public static function isConfigValid ($conf) {
     $mandatory = array(
-      'MASTODON_INSTANCE',
-      'MASTODON_APPTOKEN',
+      'QOTOORG_INSTANCE',
+      'QOTOORG_APPTOKEN',
     );
     foreach ($mandatory as $value) {
       $setting = $conf->get('plugins.'. $value);
