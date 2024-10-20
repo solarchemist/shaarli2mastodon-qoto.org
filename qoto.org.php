@@ -49,7 +49,7 @@ function s2m_qotoorg_init ($conf) {
 
 function hook_s2m_qotoorg_render_includes ($data) {
     if (in_array($data['_PAGE_'], [TemplatePage::EDIT_LINK, TemplatePage::EDIT_LINK_BATCH])) {
-        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/qoto.org/shaarli2mastodon.css';
+        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/qoto.org/qoto.org.css';
     }
 
     return $data;
@@ -65,7 +65,7 @@ function hook_s2m_qotoorg_render_includes ($data) {
  */
 function hook_s2m_qotoorg_render_footer ($data, $conf) {
     if (in_array($data['_PAGE_'], [TemplatePage::EDIT_LINK, TemplatePage::EDIT_LINK_BATCH])) {
-        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/qoto.org/shaarli2mastodon.js';
+        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/qoto.org/qoto.org.js';
     }
 
     return $data;
