@@ -1,5 +1,5 @@
 <?php
-class Utils {
+class Utils_qotoorg {
 
   /**
    * Determines whether the configuration is valid or not.

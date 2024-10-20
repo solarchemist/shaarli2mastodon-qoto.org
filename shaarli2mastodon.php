@@ -36,20 +36,20 @@ const DIRECTORY_PATH = __DIR__;
  *
  * @return array|void Error if config is not valid.
  */
-function shaarli2mastodon_init ($conf) {
+function s2m_qotoorg_init ($conf) {
     $format = $conf->get('plugins.MASTODON_TOOT_FORMAT');
     if (empty($format)) {
         $conf->set('plugins.MASTODON_TOOT_FORMAT', TOOT_DEFAULT_FORMAT);
     }
 
-    if (!Utils::isConfigValid($conf)) {
+    if (!Utils_qotoorg::isConfigValid($conf)) {
         return array('Please set up your Mastodon parameters in plugin administration page.');
     }
 }
 
-function hook_shaarli2mastodon_render_includes ($data) {
+function hook_s2m_qotoorg_render_includes ($data) {
     if (in_array($data['_PAGE_'], [TemplatePage::EDIT_LINK, TemplatePage::EDIT_LINK_BATCH])) {
-        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/shaarli2mastodon/shaarli2mastodon.css';
+        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/qoto.org/shaarli2mastodon.css';
     }
 
     return $data;
@@ -63,9 +63,9 @@ function hook_shaarli2mastodon_render_includes ($data) {
  *
  * @return array $data with the JS file.
  */
-function hook_shaarli2mastodon_render_footer ($data, $conf) {
+function hook_s2m_qotoorg_render_footer ($data, $conf) {
     if (in_array($data['_PAGE_'], [TemplatePage::EDIT_LINK, TemplatePage::EDIT_LINK_BATCH])) {
-        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/shaarli2mastodon/shaarli2mastodon.js';
+        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/qoto.org/shaarli2mastodon.js';
     }
 
     return $data;
@@ -79,9 +79,9 @@ function hook_shaarli2mastodon_render_footer ($data, $conf) {
  *
  * @return array $data not altered.
  */
-function hook_shaarli2mastodon_save_link ($data, $conf) {
+function hook_s2m_qotoorg_save_link ($data, $conf) {
     // No toot without config, for private links, or on edit.
-    if (!Utils::isConfigValid($conf)
+    if (!Utils_qotoorg::isConfigValid($conf)
         || $data['private']
         || !isset($_POST['toot'])
     ) {
@@ -96,16 +96,16 @@ function hook_shaarli2mastodon_save_link ($data, $conf) {
     $data['permalink'] = index_url($_SERVER) . 'shaare/' . $data['shorturl'];
 
     // If the link is a note, we use the permalink as the url.
-    if(Utils::isLinkNote($data)){
+    if(Utils_qotoorg::isLinkNote($data)){
         $data['url'] = $data['permalink'];
     }
 
     $format = isset($_POST['toot-format']) ? $_POST['toot-format'] : $conf->get('plugins.MASTODON_TOOT_FORMAT', TOOT_DEFAULT_FORMAT);
-    $toot = new Toot($data, $format, $tagsSeparator, $maxLength);
+    $toot = new Toot_qotoorg($data, $format, $tagsSeparator, $maxLength);
     $mastodonInstance = $conf->get('plugins.MASTODON_INSTANCE', false);
     $appToken = $conf->get('plugins.MASTODON_APPTOKEN', false);
 
-    $mastodonClient = new MastodonClient($mastodonInstance, $appToken);
+    $mastodonClient = new MastodonClient_qotoorg($mastodonInstance, $appToken);
     $response = $mastodonClient->postStatus($toot);
 
     // If an error has occurred, not blocking: just log it.
@@ -128,8 +128,8 @@ function hook_shaarli2mastodon_save_link ($data, $conf) {
  *
  * @return array $data with `edit_link_plugin` placeholder filled.
  */
-function hook_shaarli2mastodon_render_editlink ($data, $conf) {
-    if (!Utils::isConfigValid($conf)) {
+function hook_s2m_qotoorg_render_editlink ($data, $conf) {
+    if (!Utils_qotoorg::isConfigValid($conf)) {
         return $data;
     }
 
@@ -151,7 +151,7 @@ function hook_shaarli2mastodon_render_editlink ($data, $conf) {
       uniqid(),
       $conf->get('plugins.MASTODON_TOOT_MAX_LENGTH'),
       $conf->get('general.tags_separator', ' '),
-      Utils::isLinkNote($data['link']) ? 'true' : 'false',
+      Utils_qotoorg::isLinkNote($data['link']) ? 'true' : 'false',
     ], $html);
 
     $data['edit_link_plugin'][] = $html;

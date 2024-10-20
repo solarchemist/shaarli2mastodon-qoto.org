@@ -1,5 +1,5 @@
 {
-  "name": "kalvn/shaarli2mastodon",
+  "name": "solarchemist/shaarli2mastodon-qoto.org",
   "description": "Automatically toot your links from Shaarli to Mastodon.",
   "type": "project",
   "license": "MIT",

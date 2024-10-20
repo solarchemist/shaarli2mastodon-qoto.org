@@ -1,7 +1,7 @@
 <?php
 
 /**
- * HttpRequest
+ * HttpRequest_qotoorg
  *
  * @author Maxence Cauderlier
  * @link http://max-koder.fr
@@ -12,10 +12,10 @@
  */
 
 /**
- * HttpRequest is a way to do http requests and get responses
+ * HttpRequest_qotoorg is a way to do http requests and get responses
  */
 
-class HttpRequest {
+class HttpRequest_qotoorg {
 
   /**
    * Mastodon API URL

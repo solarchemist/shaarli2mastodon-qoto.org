@@ -2,7 +2,7 @@
 require_once 'HttpRequest.php';
 require_once 'Toot.php';
 
-class MastodonClient {
+class MastodonClient_qotoorg {
 
   /**
    * Mastodon Instance Name, like 'mastodon.social'
@@ -11,13 +11,13 @@ class MastodonClient {
   protected $domain;
 
   /**
-   * HttpRequest Instance
-   * @var \HttpRequest
+   * HttpRequest_qotoorg Instance
+   * @var \HttpRequest_qotoorg
    */
   protected $http;
 
   /**
-   * Defaults headers for HttpRequest
+   * Defaults headers for HttpRequest_qotoorg
    * @var array
    */
   protected $headers = [
@@ -38,7 +38,7 @@ class MastodonClient {
   public function __construct($domain, $token) {
     $this->domain = $domain;
 
-    $this->http = new HttpRequest($this->domain);
+    $this->http = new HttpRequest_qotoorg($this->domain);
 
     $this->appCredentials['bearer'] = $token;
     $this->headers['Authorization'] = $token;
@@ -51,8 +51,8 @@ class MastodonClient {
    *
    * Return entire status as an array
    *
-   * @param string $content Toot content
-   * @param string $visibility Toot visibility (optionnal)
+   * @param string $content Toot_qotoorg content
+   * @param string $visibility Toot_qotoorg visibility (optionnal)
    * Values are :
    * - public
    * - unlisted
@@ -61,7 +61,7 @@ class MastodonClient {
    * @param array $medias Medias IDs
    * @return array
    */
-  public function postStatus (Toot $toot) {
+  public function postStatus (Toot_qotoorg $toot) {
     $body = [
       'visibility' => 'public'
     ];

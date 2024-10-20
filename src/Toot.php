@@ -1,5 +1,5 @@
 <?php
-class Toot {
+class Toot_qotoorg {
 
   const TOOT_ALLOWED_PLACEHOLDERS = [
     'url',
@@ -164,7 +164,7 @@ class Toot {
     $this->maxLength = $maxLength;
   }
 
-  public function withLink ($key, $value): Toot {
+  public function withLink ($key, $value): Toot_qotoorg {
     $clone = clone $this;
 
     $link = $clone->getLink();
@@ -174,13 +174,13 @@ class Toot {
     return $clone;
   }
 
-  public function withFormat ($format): Toot {
+  public function withFormat ($format): Toot_qotoorg {
     $clone = clone $this;
     $clone->setFormat($format);
     return $clone;
   }
 
-  public function withMaxLength (int $maxLength): Toot {
+  public function withMaxLength (int $maxLength): Toot_qotoorg {
     $clone = clone $this;
     $clone->setMaxLength($maxLength);
     return $clone;
